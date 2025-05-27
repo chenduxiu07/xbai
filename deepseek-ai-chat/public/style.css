@@ -1,0 +1,521 @@
+/* 基础变量 */
+:root {
+    --primary-color: #1e88e5;
+    --secondary-color: #1565c0;
+    --sidebar-bg: #f5f5f5;
+    --sidebar-text: #333333;
+    --main-bg: #ffffff;
+    --message-ai-bg: #f5f5f5;
+    --message-user-bg: #e3f2fd;
+    --border-color: #e0e0e0;
+    --text-primary: #212121;
+    --text-secondary: #616161;
+    --hover-color: #eeeeee;
+    --active-color: #e0e0e0;
+    --success-color: #4caf50;
+    --error-color: #f44336;
+}
+
+/* 应用主容器（保持原有结构，优化间距） */
+/* 保持现有样式，确保容器不超过视口高度 */
+.app-container {
+    display: flex;
+    height: 100vh;  /* 固定高度为视口高度 */
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    border-right: 1px solid var(--border-color);
+    background: var(--sidebar-bg);
+    padding: 24px;
+    overflow-y: auto; /* 侧边栏内容过长时滚动 */
+}
+
+.history-item {
+    padding: 12px 16px;
+    margin: 4px 0;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.history-item.active {
+    background: var(--active-color);
+    color: var(--text-primary);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 确保主内容区占满视口 */
+}
+
+/* 消息容器关键样式 */
+.message-container {
+    flex: 1; /* 自动填充剩余空间 */
+    overflow-y: auto; /* 允许滚动 */
+    padding: 24px 40px; /* 内容边距 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 消息间距 */
+    background: var(--main-bg);
+}
+
+/* 消息气泡基础样式 */
+.message {
+    max-width: 75%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* 用户/AI消息区分 */
+.message.user {
+    background: var(--message-user-bg);
+    align-self: flex-end;
+    border-right: 3px solid var(--primary-color);
+}
+
+.message.ai {
+    background: var(--message-ai-bg);
+    align-self: flex-start;
+    border-left: 3px solid var(--primary-color);
+}
+
+/* 移除重复的.message.user定义 */
+.message.user {
+    background: var(--message-user-bg);
+    border-right: 3px solid var(--secondary-color);
+    border-left: none;
+}
+
+.message.ai::before {
+    content: ">";
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+/* 在文件末尾添加以下注册页面样式 */
+
+/* 注册表单容器 */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--main-bg);
+    padding: 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 40px;
+}
+
+/* 表单标题 */
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.auth-header p {
+    content: '...';
+    animation: dot-animation 1.5s infinite;
+}
+
+@keyframes dot-animation {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+/* 表单元素 */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* 带图标的输入框 */
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+/* 修复注册表单输入框样式 */
+.input-with-icon input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    background: white; /* 添加背景色 */
+}
+
+/* 修复密码确认输入框样式 */
+#confirm-password {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* 修复表单组间距 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* 修复按钮悬停效果 */
+.auth-btn:hover {
+    background: #0d8e6e;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 密码强度指示器 */
+.password-strength {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.strength-bar {
+    height: 4px;
+    flex: 1;
+    background: #e5e5e6;
+    border-radius: 2px;
+}
+
+.strength-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* 条款复选框 */
+.terms {
+    flex-direction: row;
+    align-items: center;
+}
+
+.terms input {
+    width: auto;
+    margin-right: 8px;
+}
+
+.terms a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* 注册按钮 */
+.auth-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.auth-btn:hover {
+    background: #0d8e6e;
+}
+
+/* 页脚链接 */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--text-secondary);
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* 社交登录 */
+.social-login {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-login p {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    transition: all 0.2s;
+}
+
+.social-icon:hover {
+    background: #e5e5e6;
+}
+
+/* 在文件末尾添加忘记密码页面特定样式 */
+.forgot-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.success-message {
+    text-align: center;
+    color: var(--primary-color);
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        min-width: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 16px; /* 小屏幕边距缩小 */
+    }
+    
+    .message-container {
+        padding: 16px 20px; /* 小屏幕内容边距 */
+    }
+    
+    .message {
+        max-width: 90%; /* 小屏幕消息宽度调整 */
+    }
+    
+    .input-container {
+        padding: 16px 20px; /* 小屏幕输入区边距 */
+    }
+    
+    .send-button {
+        right: 20px; /* 小屏幕按钮位置调整 */
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 30px 20px;
+    }
+    
+    .auth-header h1 {
+        font-size: 24px;
+    }
+}
+
+/* 霓虹闪烁动画 */
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 5px var(--primary-color),
+                     0 0 10px var(--primary-color);
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+.neon-text {
+    animation: neon-flicker 1.5s infinite alternate;
+}
+
+
+.cyber-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.grid-line {
+    position: absolute;
+    background: rgba(0, 240, 255, 0.05);
+}
+
+.horizontal {
+    width: 100%;
+    height: 1px;
+}
+
+.vertical {
+    width: 1px;
+    height: 100%;
+}
+
+.auth-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.auth-btn:hover::before {
+    left: 100%;
+}
+/* 清理重复的.new-chat-btn定义，保留最终版 */
+.new-chat-btn {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    margin: 0 0 16px 0;
+}
+
+.new-chat-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.send-button:hover {
+    /* transform: scale(1.05); */
+    cursor: pointer;
+}
+
+/* 输入容器 */
+.input-container {
+    padding: 16px 40px;
+    border-top: 1px solid var(--border-color);
+    background: var(--main-bg);
+    position: relative;
+    flex-shrink: 0; /* 防止输入区被压缩 */
+}
+
+/* 输入框 */
+#user-input {
+    width: 100%;
+    padding: 16px 56px 16px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    font-size: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* 发送按钮 */
+.send-button {
+    position: absolute;
+    right: 56px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 输入框规范 */
+input, textarea {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 15px;
+    outline: none;
+}
+
+#user-input {
+    width: 100%;
+    min-height: 48px;
+    max-height: 200px;
+    resize: none;
+}
+/* 标题定位样式 */
+.cyber-title {
+    position: fixed; /* 固定在视口顶部 */
+    top: 20px;       /* 距离顶部20px */
+    left: 50%;       /* 水平居中 */
+    transform: translateX(-50%);
+    z-index: 1000;   /* 确保在最上层 */
+    margin: 0;       /* 清除默认边距 */
+    font-size: 24px; /* 调整字体大小 */
+    color: var(--text-primary);
+}

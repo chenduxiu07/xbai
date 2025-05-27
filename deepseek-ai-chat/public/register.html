@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek AI - 注册</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>创建账号</h1>
+                <p>加入DeepSeek AI社区</p>
+            </div>
+            
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="输入用户名" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">电子邮箱</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="输入电子邮箱" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <div class="input-with-icon password-input">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="输入密码" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <span class="strength-bar"></span>
+                        <span class="strength-bar"></span>
+                        <span class="strength-bar"></span>
+                        <span class="strength-text">密码强度: 弱</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">确认密码</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="再次输入密码" required>
+                    </div>
+                </div>
+                
+                <div class="form-group terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">我已阅读并同意<a href="#">服务条款</a>和<a href="#">隐私政策</a></label>
+                </div>
+                
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-user-plus"></i> 注册
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>已有账号？ <a href="login.html">立即登录</a></p>
+                <div class="social-login">
+                    <p>或通过以下方式注册</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-microsoft"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="auth.js"></script>
+</body>
+</html>
